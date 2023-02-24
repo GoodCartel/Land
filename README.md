@@ -19,8 +19,19 @@ What is missing from the contract:
 
 The project contains comprehensive unit tests.
 
+## Used libraries and technologies
+
+This project uses the following components:
+- [Solidity](https://soliditylang.org/) language
+- JavaScript, TypeScript
+- [Hardhat](https://hardhat.org/) development environment
+- Hardhat toolbox plugin, which includes the following notable packages:
+  - [ethers.js](https://docs.ethers.org/v5/) Ethereum blockchain interaction library
+  - [Mocka](https://mochajs.org/) and [Chai](https://chaijs.com/) JavaScript testing libraries
+  - [Typechain](https://github.com/dethcrypto/TypeChain/) for creating TypeScript bindings for Solidity contracts
+
 ## Installation
 
-- If not installed, (install node)[https://nodejs.org/en/download/]
+- If not installed, [install node](https://nodejs.org/en/download)
 - Run `npm i`
 - To run unit tests, run `npx hardhat test`
