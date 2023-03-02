@@ -1,5 +1,8 @@
 import { ethers } from "hardhat";
 
+// This is an example deployment script. 
+// You can use this to deploy to any network, but the project is not configured to access any real networks currently.
+
 async function main() {
   const signers = await ethers.getSigners();
 
