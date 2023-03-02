@@ -1,6 +1,16 @@
 # Charity donation project
 
-This project is a training project to learn Solidity smart contract language.
+This project is a training project to learn the Solidity smart contract language.
+
+## Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
+
+1. A (smart) contract is a program which is running in the blockchain
+1. All interactions happen between addresses:
+  1. There are two types of addresses: a user address (so called Externally Owned Address or EOA) and contract address
+  1. An EOA address is generated from the user's private key. A private is generated randomly. So, to get an EOA, the user first generates a private key, which is then used to (deterministically) generate an EOA.
+  1. Every deployed contract has a unique contract address. Interaction with the contract happens to that address.
+1. An interaction is called a transaction. Any time an EOA wants to interact with another EOA or a contract, they issue a transaction.
+1. A contract is created by compiling a Solidity contract to a bytecode version and deploying that to the blockchain with a transaction.
 
 ## Contract functionality
 
@@ -16,7 +26,7 @@ The contract supports the following functionalities:
 What is missing from this project:
 - Resetting the vote state after the charity donation has been distributed
 - Various supporting functionality, such a changing vote, withdrawing vote, abstain votes, ...
-- Deploying the contract to some real testnet, verifying the contract in a blockchain scanner (Etherscan)
+- Deploying the contract to some real testnet, verifying the contract in a blockchain scanner (Etherscan). A verified contract would have an auto-generated UI to interact with it through Etherscan.
 
 ## Unit tests
 
