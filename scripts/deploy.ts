@@ -1,22 +1,9 @@
 import { ethers } from "hardhat";
 import hre from "hardhat";
 
-// This is an example deployment script. 
-// You can use this to deploy to any network, but the project is not configured to access any real networks currently.
+// This script deployes the contract to a blockchain and verifies it in Etherscan servic
 
-const verify = async (addr: string, args: any[]) => {
-  try {
-    await hre.run("verify:verify", {
-      address: addr,
-      constructorArguments: args,
-    });
-  } catch (ex: any) {
-    if (ex.toString().indexOf("Already Verified") == -1) {
-      throw ex;
-    }
-  }
-};
-
+// Entry point
 async function main() {
   const signers = await ethers.getSigners();
 
@@ -34,9 +21,28 @@ async function main() {
   console.log("Deployments done, waiting for etherscan verifications");
   // Wait for the contract to be propagated inside Etherscan
   await new Promise((f) => setTimeout(f, 60000));
+
+  // Verifies a contract in Etherscan service
+  const verify = async (addr: string, args: any[]) => {
+    try {
+      await hre.run("verify:verify", {
+        address: addr,
+        constructorArguments: args,
+      });
+    } catch (ex: any) {
+      // This is due to some Etherscan inner trickiness:
+      // Etherscan auto-verifies contracts which have the same bytecode as some already verified one
+      if (ex.toString().indexOf("Already Verified") == -1) {
+        throw ex;
+      }
+    }
+  };
+
   await verify(votingContract.address, [voters]);
 
-  console.log(`Contract deployed and verified at https://sepolia.etherscan.io/address/${votingContract.address}`);
+  console.log(
+    `Contract deployed and verified at https://sepolia.etherscan.io/address/${votingContract.address}`
+  );
 }
 
 // We recommend this pattern to be able to use async/await everywhere

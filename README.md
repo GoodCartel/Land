@@ -7,7 +7,7 @@ This project is a training project to learn the Solidity smart contract language
 1. A (smart) contract is a program which is running in the blockchain
 1. All interactions happen between addresses:
   1. There are two types of addresses: a user address (so called Externally Owned Address or EOA) and contract address
-  1. An EOA address is generated from the user's private key. A private is generated randomly. So, to get an EOA, the user first generates a private key, which is then used to (deterministically) generate an EOA.
+  1. An EOA address is generated from the user's private key. A private is generated randomly. So, to get an EOA, the user first generates a private key, which is then used to (deterministically) generate an EOA. This is also called a wallet or an account.
   1. Every deployed contract has a unique contract address. Interaction with the contract happens to that address.
 1. An interaction is called a transaction. Any time an EOA wants to interact with another EOA or a contract, they issue a transaction.
 1. A contract is created by compiling a Solidity contract to a bytecode version and deploying that to the blockchain with a transaction.
@@ -45,6 +45,26 @@ This project uses the following components:
 
 ## Installation
 
-- If not installed, [install node](https://nodejs.org/en/download)
-- Run `npm i`
-- To run unit tests, run `npx hardhat test`
+1. If not installed, [install node](https://nodejs.org/en/download)
+1. Open a terminal in the project's root folder
+1. Run `npm i`
+1. To run unit tests, run `npx hardhat test`
+
+### Deployment
+
+To deploy the contract to the Sepolia testnet, you should:
+
+1. Have an account (a wallet) with enough Ether for deployment
+  1. To create an account, you can use a browser wallet extension. [Metamask](https://metamask.io/) is one popular wallet extension. Once you have it installed, you can switch network to Sepolia and create a new account.
+  1. To get free Ether in the Sepolia testnet, you need a faucet. You can for example run this faucet for a while: https://sepolia-faucet.pk910.de/ . It takes a while to 'generate' Ether in order to deter spam attacks. Do note that this is not a real Proof of Work protocol.
+1. Create a new file called `.env` in the project root folder. You can just duplicate the file `.env.example` to have a ready template.
+1. Export the account's private key. Metamask offers this possibility through the account settings. Add this private key to the `.env` file. This private key is used to sign deployment transactions - so this account will be the one deploying contracts (and paying for the deployment).
+1. Go to https://etherscan.io and create an Etherscan account there. Create an API key, export it and add it to `.env`. This is used to verify contracts in the Etherscan blockchain explorer.
+1. Go to https://alchemy.com and create an Alchemy account. Create a new app in the Sepolia network. Export its full HTTPS url and add it to `.env`. This is the blockchain connection provider you will use to connect to the blockchain.
+1. Your `.env` file should now look like the image after these instructions.
+1. Run command `npm run deploy` which executes a script `scripts/deploy.ts` for deployment and Etherscan verification.
+1. It takes a bit more than a minute to deploy and verify, but once that's done the script should give you an address for the contract.
+
+<img src="assets/env.png" alt="Contents of .env file"></img>
+
+
