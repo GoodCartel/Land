@@ -4,6 +4,16 @@ This project is a training project to learn the Solidity smart contract language
 
 ## Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
 
+### Why introduce Solidity
+
+Nowadays there are many different languages for writing smart contracts. Solidity is, [by far](https://blog.chain.link/smart-contract-programming-languages/), the most popular language. It was arguably the first language for writing smart contracts since it was the first language for the first smart contract platform Ethereum.
+
+Because of its popularity, Solidity has good documentation and plenty of helpful articles around to help when stuck. Even [OpenAI](https://chat.openai.com/) understands and can help you with Solidity!
+
+Therefore we feel that Solidity is the natural choice for an introductory language.
+
+### Solidity & EVM
+
 1. A (smart) contract is a program which is running in the blockchain
 1. All interactions happen between addresses:
   1. There are two types of addresses: a user address (so called Externally Owned Address or EOA) and contract address
