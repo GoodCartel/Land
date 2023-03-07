@@ -22,23 +22,24 @@ Therefore we feel that Solidity is the natural choice for an introductory langua
 1. An interaction is called a transaction. Any time an EOA wants to interact with another EOA or a contract, they issue a transaction.
 1. A contract is created by compiling a Solidity contract to a bytecode version and deploying that to the blockchain with a transaction.
 
-## Contract functionality
+## Example contract functionality
 
-The contract is a simple voting contract to distribute native assets sent to the contract. This is only created for learning purposes and is not meant to be used in real use.
+The contract presented in this repository (file *contracts/Voting.sol*) is a simple voting contract to distribute native assets sent to the contract. This is only created for learning purposes and is not meant to be used in real use.
 
 The contract supports the following functionalities:
-- A list of voter addresses is given upon contract deployment
+- A static list of voter addresses is provided to the contract upon deployment
 - Voters can suggest a charity donation address
 - Anyone can send the blockchain's native asset to the contract to donate to the target charity
 - At some point the voters vote whether the gathered assets should be sent to the target charity or not
-- If all voters agree, the assets can be distributed to the charity
+- If enough voters agree, the assets can be distributed to the charity
 
 What is missing from this project:
 - Resetting the vote state after the charity donation has been distributed
 - Various supporting functionality, such a changing vote, withdrawing vote, abstain votes, ...
-- Deploying the contract to some real testnet, verifying the contract in a blockchain scanner (Etherscan). A verified contract would have an auto-generated UI to interact with it through Etherscan.
 
 ## Unit tests
+
+Unit tests are small pieces of code which make sure certain specific functionality works in the smart contract. They help in making sure the contract works as intended, but also to help retain the desired functionality when changes are made to the contract.
 
 The project contains comprehensive unit tests. The tests are written with Chai/Mocha JS test frameworks, with some Solidity-specific extensions.
 
