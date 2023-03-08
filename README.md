@@ -1,6 +1,8 @@
-# Charity donation project
+# Charity donation tutorial project
 
 This project is a training project to learn the Solidity smart contract language.
+
+This documentation is meant to introduce various parts of the Ethereum ecosystem and its most common coding language, Solidity. You do not need to understand everything written here to be able to write smart contracts, but the more you understand the easier things get for you.
 
 ## Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
 
@@ -21,9 +23,41 @@ Therefore we feel that Solidity is the natural choice for an introductory langua
   1. Every deployed contract has a unique contract address. Interaction with the contract happens to that address.
 1. An interaction is called a transaction. Any time an EOA wants to interact with another EOA or a contract, they issue a transaction.
 
-### Solidity Development
+### Ethereum assets
+
+There are two types of assets in Ethereum. The main asset is the blockchain's native asset, called *Ether*. The other type is various user created assets, called tokens.
+
+Ether is used for mainly two purposes: transfers of value (user or contract wants to transfer some asset of value to another user or contract) and for paying transaction costs. Transaction costs are explained in more detail below.
+
+The other type, tokens, requires its own chapter.
+
+#### Tokens
+
+Any user, with enough Ether to pay for the transaction costs, can write and deploy any contract. Since contracts can store state they can be used as ledgers. Tokens are always regular smart contracts.
+
+The most common token standard is the [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) token. The main element is a variable inside the contract which contains information about which address has which balance (this is the ledger). Furthermore, the token standard includes functions to change these balances by *transfers*. If the ledger says I have 5 tokens I can call the contract's transfer functionality to transfer those tokens to another address - this simply changes the numbers in the ledger, deducting from my balance and increasing the other address's balance.
+
+Therefore tokens are regular smart contracts which follow certain token standards. Since every ERC-20 token follows the same standard, it is easy to integrate the tokens to various other contracts.
+
+Another famous token standard is the [ERC-721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) standard - more commonly known by its name Non-Fungible Token, or NFT.
+
+Many tokens have real world value. Therefore they can be traded in various marketplaces and can be used to pay for various services.
+
+### Transaction costs
+
+Every transaction (including contract deployment) costs certain amount of *gas*. Gas is a unit for measuring computational complexity of operations. For example multiplying two values in a contract costs certain amount of gas, so the more operations (and more expensive operations) your transaction performs in a contract, the more gas the transaction requires.
+
+When writing contracts one always has to consider the gas costs each line of code requires.
+
+To pay for your transaction's gas costs you need to have Ethers in the wallet which issues the transaction. Ether is automatically used to pay for the gas costs. The eventual transaction cost depends not only on the transaction complexity, but also on the blockchain usage: the more usage the blockchain has the more you have to pay to get your transaction processed.
+
+### Solidity development
 
 Solidity has been inspired by JavaScript so its syntax should look somewhat familiar.
+
+Solidity is a compiled language, so its source code is compiled into a bytecode version before deployment into a blockchain.
+
+
 
 TODO: immutability
 TODO: can have assets
@@ -123,4 +157,7 @@ To deploy the contract to the Sepolia testnet, you should:
 
 <img src="assets/env.png" alt="Contents of .env file"></img>
 
+## Read more
+
+TODO
 
