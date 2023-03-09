@@ -57,12 +57,13 @@ Solidity has been inspired by JavaScript so its syntax should look somewhat fami
 
 Solidity is a compiled language, so its source code is compiled into a bytecode version before deployment into a blockchain.
 
+#### Immutability
 
+All deployed contracts are immutable. That means once a contract is deployed, nobody can change its code. Furthermore, all contracts are permanent: once it's deployed it will stay in the blockchain forever.
 
-TODO: immutability
-TODO: can have assets
-TODO: gas (depl + use)
-TODO: deployment: A contract is created by compiling a Solidity contract to a bytecode version and deploying that to the blockchain with a transaction.
+However, contacts do have state, so their functionality can be changed by changing some variables. One just has to code all of the desired logic in advance: if variable *x* equals zero it should do this, but if it's greater than zero do something else.
+
+There are ways to "bypass" the immutability by using proxy contracts, but that's out of the scope for this tutorial.
 
 #### Development tools
 
@@ -71,6 +72,22 @@ There exist various tools that help in contract development. Every developer has
 Probably the most used development environment is Visual Studio Code. This project has a [default extension recommendation](https://marketplace.visualstudio.com/items?itemName=NomicFoundation.hardhat-solidity) from Hardhat (set in folder *.vscode*).
 
 For quick and easy playground in the browser one can use [Remix](https://remix.ethereum.org/). It has good support for various tooling and some projects even use it for production code, but I wouldn't recommend that.
+
+#### Deployment flow
+
+Just having a ready source code (or bytecode) doesn't give you much - you also need to deploy it somewhere. You can think of deployment as similar to releasing a version of your traditional application, except that all blockchain deployments are permanent and immutable.
+
+However, being permanent and immutable only refers to the blockchain in question. Nothing stops you from starting a new blockchain. And this is exactly what local development tools, including unit testing, do: they make it easy and fast to reset the blockchain state, essentially starting a new blockchain.
+
+So when developing contracts on your local machine you can (and should) utilize local blockchains which are easy to reset. Development tooling mostly handles this automatically in the background, but if needed you can also run a local blockchain explicitly.
+
+Once you are ready to deploy your code to some real blockchain, which can't be reset, you should start by deploying to some test network blockchain. Each EVM blockchain, such as Ethereum, has one or more testnets which are meant for testing. You can get testnet Ethers for free, which you can then use for deployments and transactions. Testnets are good especially for collaborative testing: doing manual tests which require multiple parties, since multiple parties can't utilize your local blockchain.
+
+After testnet, the next logical step is deploying to mainnet.
+
+#### User interfaces
+
+
 
 #### Example project files and folder structure
 
