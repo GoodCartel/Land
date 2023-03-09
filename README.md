@@ -1,10 +1,18 @@
-# Charity donation tutorial project
+# Decentralized Comfort Center tutorial project
 
-This project is a training project to learn the Solidity smart contract language.
+This project is a training project to learn the basics of developing smart contracts.
 
-This documentation is meant to introduce various parts of the Ethereum ecosystem and its most common coding language, Solidity. You do not need to understand everything written here to be able to write smart contracts, but the more you understand the easier things get for you.
+This documentation is meant to introduce various parts of the Ethereum ecosystem and its most common coding language, Solidity. You do not need to understand everything written here to be able to write smart contracts, but the more you understand the better smart contract developer you become.
+
+## What are smart contracts
+
+Smart contracts are quite much like regular programs or applications except that they live and run on a blockchain.
+
+They are not real legal contracts but they have the power to force their programmed behaviour in a transparent manner. And that is their superpower: everyone can see what a contract does and knows that its behaviour is guaranteed forever.
 
 ## Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
+
+TODO
 
 ### Why introduce Solidity
 
@@ -14,9 +22,20 @@ Because of its popularity, Solidity has good documentation and plenty of helpful
 
 Therefore we feel that Solidity is the natural choice for an introductory language.
 
+### What is Solidity
+
+Solidity is a new(ish) development language for developing smart contracts for the Ethereum ecosystem. It has been inspired by JavaScript so its syntax should look somewhat familiar.
+
+Solidity is a high-level language and has lots of features familiar from other high-level languages. But since it is also a language for writing blockchain smart contracts, it has some unique extra features.
+
+Before a Solidity contract can be used in a real blockchain environment, it needs to be compiled into a bytecode version. 
+
+### What is the Ethereum Virtual Machine (EVM)
+
+TODO
+
 ### Solidity & EVM in a nutshell
 
-1. A (smart) contract is a program which is running in the blockchain
 1. All interactions happen between addresses:
   1. There are two types of addresses: a user address (so called Externally Owned Address or EOA) and contract address
   1. An EOA address is generated from the user's private key. A private is generated randomly. So, to get an EOA, the user first generates a private key, which is then used to (deterministically) generate an EOA. This is also called a wallet or an account.
@@ -53,9 +72,7 @@ To pay for your transaction's gas costs you need to have Ethers in the wallet wh
 
 ### Solidity development
 
-Solidity has been inspired by JavaScript so its syntax should look somewhat familiar.
 
-Solidity is a compiled language, so its source code is compiled into a bytecode version before deployment into a blockchain.
 
 #### Immutability
 
@@ -121,6 +138,8 @@ As is the case with most modern coding languages, the language itself is not the
 The difficult part is understanding the environment in which the language is used. Since contracts are immutable it is not easy to fix possible issues - therefore the development lifycycle looks quite different than with traditional environments where often the business motto is "fail fast". If you fail fast with a blockchain smart contract you may lose millions in real assets. Security has to be your development priority.
 
 Another common pitfall is the contract's gas usage. Nobody wants to pay too much for their transactions. In the worst case, the contract becomes bricked if it tries to use more gas than any blockchain block has space for.
+
+## TODO: Security
 
 ## Example contract functionality
 
