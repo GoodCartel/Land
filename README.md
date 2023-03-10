@@ -12,8 +12,6 @@ They are not real legal contracts but they have the power to force their program
 
 ## Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
 
-TODO
-
 ### Why introduce Solidity
 
 Nowadays there are many different languages for writing smart contracts. Solidity is, [by far](https://blog.chain.link/smart-contract-programming-languages/), the most popular language. It was arguably the first language for writing smart contracts since it was the first language for the first smart contract platform Ethereum.
@@ -32,15 +30,28 @@ Before a Solidity contract can be used in a real blockchain environment, it need
 
 ### What is the Ethereum Virtual Machine (EVM)
 
-TODO
+The Ethereum Virtual Machine is an abstract computer which manages all the logic and consensus of the blockchain. It's the backbone of all of the blockchain's operations: all addresses, contracts and state transitions are stored in the EVM.
 
-### Solidity & EVM in a nutshell
+The EVM is built by thousands of invidivual computers which participate in upholding the EVM's rules. Each one of these computers runs a *node client*, a program which knows the rules of the network and communicates with other node clients to propagate information, and to agree on the current blockchain's state.
 
-1. All interactions happen between addresses:
-  1. There are two types of addresses: a user address (so called Externally Owned Address or EOA) and contract address
-  1. An EOA address is generated from the user's private key. A private is generated randomly. So, to get an EOA, the user first generates a private key, which is then used to (deterministically) generate an EOA. This is also called a wallet or an account.
-  1. Every deployed contract has a unique contract address. Interaction with the contract happens to that address.
-1. An interaction is called a transaction. Any time an EOA wants to interact with another EOA or a contract, they issue a transaction.
+#### Addresses
+
+All interactions inside the blockchain happen between blockchain addresses. An address is a 40 character hexadecimal string (such as *0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D*).
+
+There are two types of addresses:
+1. A user address. Also called an Externally Owned Address or EOA.
+1. A contract address.
+
+
+An EOA address is generated from the user's private key. A private key is generated randomly. So, to get an EOA, the user first generates a private key, which is then used to (deterministically) generate an EOA. This is also called a wallet or an account.
+
+Every deployed contract has a unique contract address. Interaction with the contract happens to that address.
+
+#### Transactions
+
+Any interaction which changes state in the blockchain is called a transaction. Any time an EOA wants to interact with another EOA or a contract, they issue a transaction. Transactions are always issued by EOAs, so contracts can't issue transactions by themselves. Therefore contracts can't also do anything on their own - all actions performed by contracts are always triggered by a transaction from an EOA.
+
+It is possible to read data from the blockchain without a transaction. This kind of interaction only reads the data from the node you are connecting to, since all nodes contain the blockchain's current state. This kind of read-only interactions can't, obviously, change the state of the blockchain in any way.
 
 ### Ethereum assets
 
@@ -66,9 +77,11 @@ Many tokens have real world value. Therefore they can be traded in various marke
 
 Every transaction (including contract deployment) costs certain amount of *gas*. Gas is a unit for measuring computational complexity of operations. For example multiplying two values in a contract costs certain amount of gas, so the more operations (and more expensive operations) your transaction performs in a contract, the more gas the transaction requires.
 
-When writing contracts one always has to consider the gas costs each line of code requires.
+When writing contracts one always has to consider the gas costs each line of code.
 
 To pay for your transaction's gas costs you need to have Ethers in the wallet which issues the transaction. Ether is automatically used to pay for the gas costs. The eventual transaction cost depends not only on the transaction complexity, but also on the blockchain usage: the more usage the blockchain has the more you have to pay to get your transaction processed.
+
+Read-only interactions do not consume gas and are therefore free.
 
 ### Solidity development
 
@@ -156,13 +169,13 @@ What is missing from this project:
 - Resetting the vote state after the charity donation has been distributed
 - Various supporting functionality, such a changing vote, withdrawing vote, abstain votes, ...
 
-## Unit tests
+### Unit tests
 
 Unit tests are small pieces of code which make sure certain specific functionality works in the smart contract. They help in making sure the contract works as intended, but also to help retain the desired functionality when changes are made to the contract.
 
 The project contains comprehensive unit tests. The tests are written with Chai/Mocha JS test frameworks, with some Solidity-specific extensions.
 
-## Used libraries and technologies
+### Used libraries and technologies
 
 This project uses the following components:
 - [Solidity](https://soliditylang.org/) language
@@ -173,16 +186,16 @@ This project uses the following components:
   - [Mocka](https://mochajs.org/) and [Chai](https://chaijs.com/) JavaScript testing libraries
   - [Typechain](https://github.com/dethcrypto/TypeChain/) for creating TypeScript bindings for Solidity contracts
 
-## Installation
+### Installation
 
 1. If not installed, [install node](https://nodejs.org/en/download)
 1. Open a terminal in the project's root folder
 1. Run `npm i`
 1. To run unit tests, run `npx hardhat test`
 
-### Deployment
+## Deployment
 
-To deploy the contract to the Sepolia testnet, you should:
+To deploy the example contract to the Sepolia testnet, you should:
 
 1. Have an account (a wallet) with enough Ether for deployment
   1. To create an account, you can use a browser wallet extension. [Metamask](https://metamask.io/) is one popular wallet extension. Once you have it installed, you can switch network to Sepolia and create a new account.
