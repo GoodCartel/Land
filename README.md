@@ -85,8 +85,6 @@ Read-only interactions do not consume gas and are therefore free.
 
 ### Solidity development
 
-
-
 #### Immutability
 
 All deployed contracts are immutable. That means once a contract is deployed, nobody can change its code. Furthermore, all contracts are permanent: once it's deployed it will stay in the blockchain forever.
@@ -102,26 +100,6 @@ There exist various tools that help in contract development. Every developer has
 Probably the most used development environment is Visual Studio Code. This project has a [default extension recommendation](https://marketplace.visualstudio.com/items?itemName=NomicFoundation.hardhat-solidity) from Hardhat (set in folder *.vscode*).
 
 For quick and easy playground in the browser one can use [Remix](https://remix.ethereum.org/). It has good support for various tooling and some projects even use it for production code, but I wouldn't recommend that.
-
-#### Deployment flow
-
-Just having a ready source code (or bytecode) doesn't give you much - you also need to deploy it somewhere. You can think of deployment as similar to releasing a version of your traditional application, except that all blockchain deployments are permanent and immutable.
-
-However, being permanent and immutable only refers to the blockchain in question. Nothing stops you from starting a new blockchain. And this is exactly what local development tools, including unit testing, do: they make it easy and fast to reset the blockchain state, essentially starting a new blockchain.
-
-So when developing contracts on your local machine you can (and should) utilize local blockchains which are easy to reset. Development tooling mostly handles this automatically in the background, but if needed you can also run a local blockchain explicitly.
-
-Once you are ready to deploy your code to some real blockchain, which can't be reset, you should start by deploying to some test network blockchain. Each EVM blockchain, such as Ethereum, has one or more testnets which are meant for testing. You can get testnet Ethers for free, which you can then use for deployments and transactions. Testnets are good especially for collaborative testing: doing manual tests which require multiple parties, since multiple parties can't utilize your local blockchain.
-
-After testnet, the next logical step is deploying to mainnet.
-
-#### Using the contract: user interfaces and integrations
-
-Once a contract is deployed to some real blockchain (even testnet) there are two ways it can be utilized: through user interfaces or for other contracts to integrate with our contract.
-
-For other contracts to connect to your contract, they need to have your contract's address and knowledge of the functionalities it supports. Contract address you get during deployment. To connect one contract to another, special contract types called *interfaces* are used. An interface simply lists contract functionality.
-
-Typically a contract has some sort of user interface built on top of it. This is often a website. The website utilizes specialized libraries to interact with the blockchain through some *node provider* which provides access to the blockchain. The libraries makes it (relatively) easy for frontend developers to query contracts and to issue transactions to contracts.
 
 #### Example project files and folder structure
 
@@ -152,7 +130,26 @@ The difficult part is understanding the environment in which the language is use
 
 Another common pitfall is the contract's gas usage. Nobody wants to pay too much for their transactions. In the worst case, the contract becomes bricked if it tries to use more gas than any blockchain block has space for.
 
-## TODO: Security
+## Contract security
+
+All programs have bugs. Smart contracts are no exception.
+
+Bugs in smart contracts are a lot more serious for a few reasons:
+1. Since contracts are immutable, there's no easy way to fix a bug
+1. A contract may hold valuable assets. A bug may expose those to an attacker
+1. The attack vectors are quite different compared to regular programs, which means specials skills and/or tools are required to identify security issues
+
+### Security audits
+
+Once a smart contract's code is ready, it is usually given to some auditing company for an audit.
+
+These specialized auditing companies go through the contract code to try to identify security issues. They use a lot of static tooling, but the most important part is manually analyzing the contract. There is currently no real substitute for an expert human to manually go through the contract and report findings.
+
+Once an audit is complete, a report is published and possible issues found in it are corrected. After that, big projects may start another audit with another company, or simply deem the contract ready for production and deploy it.
+
+### Bug bounties
+
+Since contract code is usually open sourced, anyone can go through it to find security issues. A special bug bounty program is sometimes issued where the contract team can pay a million dollars or [even more](https://assets.ctfassets.net/t3wqy70tc3bv/6Tqb2wlVnwdGYeVZX4WDmU/6b0c222b4f680ac80ea801e032894eac/Immunefi_Crypto_Bug_Bounty_and_Ransom_Payments_Report.pdf) for found critical issues.
 
 ## Example contract functionality
 
@@ -195,6 +192,20 @@ This project uses the following components:
 
 ## Deployment
 
+### Deployment flow
+
+Just having a ready source code (or bytecode) doesn't give you much - you also need to deploy it somewhere. You can think of deployment as similar to releasing a version of your traditional application, except that all blockchain deployments are permanent and immutable.
+
+However, being permanent and immutable only refers to the blockchain in question. Nothing stops you from starting a new blockchain. And this is exactly what local development tools, including unit testing, do: they make it easy and fast to reset the blockchain state, essentially starting a new blockchain.
+
+So when developing contracts on your local machine you can (and should) utilize local blockchains which are easy to reset. Development tooling mostly handles this automatically in the background, but if needed you can also run a local blockchain explicitly.
+
+Once you are ready to deploy your code to some real blockchain, which can't be reset, you should start by deploying to some test network blockchain. Each EVM blockchain, such as Ethereum, has one or more testnets which are meant for testing. You can get testnet Ethers for free, which you can then use for deployments and transactions. Testnets are good especially for collaborative testing: doing manual tests which require multiple parties, since multiple parties can't utilize your local blockchain.
+
+After testnet, the next logical step is deploying to mainnet.
+
+### Deploying the example contract
+
 To deploy the example contract to the Sepolia testnet, you should:
 
 1. Have an account (a wallet) with enough Ether for deployment
@@ -208,7 +219,18 @@ To deploy the example contract to the Sepolia testnet, you should:
 1. Run command `npm run deploy` which executes a script `scripts/deploy.ts` for deployment and Etherscan verification.
 1. It takes a bit more than a minute to deploy and verify, but once that's done the script should give you an address for the contract.
 
-<img src="assets/env.png" alt="Contents of .env file"></img>
+<img src="assets/env.png" alt="Contents of .env file"></img>Example of .env file contents
+
+### Using the contract: user interfaces and integrations
+
+Once a contract is deployed to some real blockchain (even testnet) there are two ways it can be utilized: through user interfaces or for other contracts to integrate with our contract.
+
+For other contracts to connect to your contract, they need to have your contract's address and knowledge of the functionalities it supports. Contract address you get during deployment. To connect one contract to another, special contract types called *interfaces* are used. An interface simply lists contract functionality.
+
+Typically a contract has some sort of user interface built on top of it. This is often a website. The website utilizes specialized libraries to interact with the blockchain through some *node provider* which provides access to the blockchain. The libraries makes it (relatively) easy for frontend developers to query contracts and to issue transactions to contracts.
+
+
+
 
 ## Read more
 
