@@ -2,7 +2,7 @@
 
 This project is a training project to learn the basics of developing smart contracts.
 
-This documentation is meant to introduce various parts of the Ethereum ecosystem and its most common coding language, Solidity. You do not need to understand everything written here to be able to write smart contracts, but the more you understand the better smart contract developer you become.
+This documentation is meant to introduce various parts of the Ethereum ecosystem and its most common coding language, Solidity. You do not need to understand everything written here to be able to write smart contracts.
 
 ## What are smart contracts
 
@@ -10,23 +10,7 @@ Smart contracts are quite much like regular programs or applications except that
 
 They are not real legal contracts but they have the power to force their programmed behaviour in a transparent manner. And that is their superpower: everyone can see what a contract does and knows that its behaviour is guaranteed forever.
 
-## Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
-
-### Why introduce Solidity
-
-Nowadays there are many different languages for writing smart contracts. Solidity is, [by far](https://blog.chain.link/smart-contract-programming-languages/), the most popular language. It was arguably the first language for writing smart contracts since it was the first language for the first smart contract platform Ethereum.
-
-Because of its popularity, Solidity has good documentation and plenty of helpful articles around to help when stuck. Even [OpenAI](https://chat.openai.com/) understands and can help you with Solidity!
-
-Therefore we feel that Solidity is the natural choice for an introductory language.
-
-### What is Solidity
-
-Solidity is a new(ish) development language for developing smart contracts for the Ethereum ecosystem. It has been inspired by JavaScript so its syntax should look somewhat familiar.
-
-Solidity is a high-level language and has lots of features familiar from other high-level languages. But since it is also a language for writing blockchain smart contracts, it has some unique extra features.
-
-Before a Solidity contract can be used in a real blockchain environment, it needs to be compiled into a bytecode version. 
+## Introduction to Ethereum Virtual Machine (EVM) environment
 
 ### What is the Ethereum Virtual Machine (EVM)
 
@@ -42,7 +26,6 @@ There are two types of addresses:
 1. A user address. Also called an Externally Owned Address or EOA.
 1. A contract address.
 
-
 An EOA address is generated from the user's private key. A private key is generated randomly. So, to get an EOA, the user first generates a private key, which is then used to (deterministically) generate an EOA. This is also called a wallet or an account.
 
 Every deployed contract has a unique contract address. Interaction with the contract happens to that address.
@@ -57,9 +40,19 @@ It is possible to read data from the blockchain without a transaction. This kind
 
 There are two types of assets in Ethereum. The main asset is the blockchain's native asset, called *Ether*. The other type is various user created assets, called tokens.
 
-Ether is used for mainly two purposes: transfers of value (user or contract wants to transfer some asset of value to another user or contract) and for paying transaction costs. Transaction costs are explained in more detail below.
+Ether is used for mainly two purposes: transfers of value (user or contract wants to transfer some asset of value to another user or contract) and for paying transaction costs. Transaction costs are explained below.
 
-The other type, tokens, requires its own chapter.
+The other type, tokens, requires its own chapter and is explained a bit later.
+
+### Transaction costs
+
+Every transaction (including contract deployment) costs certain amount of *gas*. Gas is a unit for measuring computational complexity of operations. For example multiplying two values in a contract costs certain amount of gas, so the more operations (and more complex operations) your transaction performs in a contract, the more gas the transaction requires.
+
+When writing contracts one always has to consider the gas costs of each line of code.
+
+To pay for your transaction's gas costs you need to have Ethers in the wallet which issues the transaction. Ether is automatically used to pay for the gas costs. The eventual transaction cost depends not only on the transaction complexity, but also on the blockchain usage: the more usage the blockchain has the more you have to pay to get your transaction processed.
+
+Read-only interactions do not consume gas and are therefore free.
 
 #### Tokens
 
@@ -73,21 +66,29 @@ Another famous token standard is the [ERC-721](https://ethereum.org/en/developer
 
 Many tokens have real world value. Therefore they can be traded in various marketplaces and can be used to pay for various services.
 
-### Transaction costs
+## Solidity
 
-Every transaction (including contract deployment) costs certain amount of *gas*. Gas is a unit for measuring computational complexity of operations. For example multiplying two values in a contract costs certain amount of gas, so the more operations (and more expensive operations) your transaction performs in a contract, the more gas the transaction requires.
+### Why introduce Solidity
 
-When writing contracts one always has to consider the gas costs each line of code.
+Nowadays there are many different languages for writing smart contracts. Solidity is, [by far](https://blog.chain.link/smart-contract-programming-languages/), the most popular language. It was arguably the first language for writing smart contracts since it was the first language for the first smart contract platform Ethereum.
 
-To pay for your transaction's gas costs you need to have Ethers in the wallet which issues the transaction. Ether is automatically used to pay for the gas costs. The eventual transaction cost depends not only on the transaction complexity, but also on the blockchain usage: the more usage the blockchain has the more you have to pay to get your transaction processed.
+Because of its popularity Solidity has good documentation and plenty of helpful articles around to help when stuck. Even [OpenAI](https://chat.openai.com/) understands and can help you with Solidity!
 
-Read-only interactions do not consume gas and are therefore free.
+Therefore we feel that Solidity is the natural choice for an introductory language.
+
+### What is Solidity
+
+Solidity is a new(ish) development language for developing smart contracts for the Ethereum ecosystem. It has been inspired by JavaScript so its syntax should look somewhat familiar.
+
+Solidity is a high-level language and has lots of features familiar from other high-level languages. But since it is also a language for writing blockchain smart contracts, it has some unique extra features.
+
+Before a Solidity contract can be used in a real blockchain environment, it needs to be compiled into a bytecode version. 
 
 ### Solidity development
 
 #### Immutability
 
-All deployed contracts are immutable. That means once a contract is deployed, nobody can change its code. Furthermore, all contracts are permanent: once it's deployed it will stay in the blockchain forever.
+All deployed contracts are immutable. That means once a contract is deployed nobody can change its code. Furthermore, all contracts are permanent: once it's deployed it will stay in the blockchain forever.
 
 However, contacts do have state, so their functionality can be changed by changing some variables. One just has to code all of the desired logic in advance: if variable *x* equals zero it should do this, but if it's greater than zero do something else.
 
@@ -99,7 +100,7 @@ There exist various tools that help in contract development. Every developer has
 
 Probably the most used development environment is Visual Studio Code. This project has a [default extension recommendation](https://marketplace.visualstudio.com/items?itemName=NomicFoundation.hardhat-solidity) from Hardhat (set in folder *.vscode*).
 
-For quick and easy playground in the browser one can use [Remix](https://remix.ethereum.org/). It has good support for various tooling and some projects even use it for production code, but I wouldn't recommend that.
+For quick and easy playground in the browser one can use [Remix](https://remix.ethereum.org/). It has good support for various tooling and some projects even use it for production code, but that's not recommended.
 
 #### Example project files and folder structure
 
@@ -185,10 +186,12 @@ This project uses the following components:
 
 ### Installation
 
+1. Get the project's files from [GitHub](https://github.com/GoodCartel/SolidityTraining). Download as ZIP if you're not sure how to clone the repository itself
 1. If not installed, [install node](https://nodejs.org/en/download)
 1. Open a terminal in the project's root folder
 1. Run `npm i`
 1. To run unit tests, run `npx hardhat test`
+1. For deployment see below for details
 
 ## Deployment
 
@@ -211,10 +214,10 @@ To deploy the example contract to the Sepolia testnet, you should:
 1. Have an account (a wallet) with enough Ether for deployment
   1. To create an account, you can use a browser wallet extension. [Metamask](https://metamask.io/) is one popular wallet extension. Once you have it installed, you can switch network to Sepolia and create a new account.
   1. To get free Ether in the Sepolia testnet, you need a faucet. You can for example run this faucet for a while: https://sepolia-faucet.pk910.de/ . It takes a while to 'generate' Ether in order to deter spam attacks. Do note that this is not a real Proof of Work protocol.
-1. Create a new file called `.env` in the project root folder. You can just duplicate the file `.env.example` to have a ready template.
-1. Export the account's private key. Metamask offers this possibility through the account settings. Add this private key to the `.env` file. This private key is used to sign deployment transactions - so this account will be the one deploying contracts (and paying for the deployment).
-1. Go to https://etherscan.io and create an Etherscan account there. Create an API key, export it and add it to `.env`. This is used to verify contracts in the Etherscan blockchain explorer.
-1. Go to https://alchemy.com and create an Alchemy account. Create a new app in the Sepolia network. Export its full HTTPS url and add it to `.env`. This is the blockchain connection provider you will use to connect to the blockchain.
+1. Create a new file called `.env` in the project root folder. You can just duplicate the file `.env.example` to have a ready template. The `.env` file is a store for secret information. All information is represented as key-value pairs. See the attached image for an example on how it looks.
+1. Export the created account's private key. Metamask offers this possibility through the account settings. Add this private key to the `.env` file with the key `SEPOLIA_PRIVATE_KEY`. This private key is used to sign deployment transactions - so this account will be the one deploying contracts (and paying for the deployment).
+1. Go to https://etherscan.io and create an Etherscan account there. Create an API key, export it and add it to `.env` with key `ETHERSCAN_API_KEY`. This is used to verify contracts in the Etherscan blockchain explorer.
+1. Go to https://alchemy.com and create an Alchemy account. Create a new app in the Sepolia network. Export its full HTTPS url and add it to `.env` with key `SEPOLIA_PROVIDER_URL`. This is the blockchain connection provider you will use to connect to the blockchain.
 1. Your `.env` file should now look like the image after these instructions.
 1. Run command `npm run deploy` which executes a script `scripts/deploy.ts` for deployment and Etherscan verification.
 1. It takes a bit more than a minute to deploy and verify, but once that's done the script should give you an address for the contract.
@@ -229,10 +232,14 @@ For other contracts to connect to your contract, they need to have your contract
 
 Typically a contract has some sort of user interface built on top of it. This is often a website. The website utilizes specialized libraries to interact with the blockchain through some *node provider* which provides access to the blockchain. The libraries makes it (relatively) easy for frontend developers to query contracts and to issue transactions to contracts.
 
+#### Etherscan user interface
 
+The Etherscan service generates a crude user interface for verified contracts. It's useful for performing some manual tests on a deployed contract and to read its state.
 
+## Learn more
 
-## Read more
+To continue learning about Solidity, smart contract and the EVM, you can try the following resources:
 
-TODO
-
+- A cool hands-on Solidity [tutorial](https://cryptozombies.io/). A bit outdated, but still works fine.
+- The Ethereum Foundation's [Learn hub](https://ethereum.org/en/learn/)
+- TODO: what else?
