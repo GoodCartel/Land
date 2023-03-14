@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
 /**
@@ -36,7 +36,7 @@ contract Voting {
     address public target;
 
     /**
-     * @notice Instantiates the contract
+     * @notice Instantiates the contract. Called automatically upon deployment
      */
     constructor(address[] memory voters) {
         for (uint256 i = 0; i < voters.length; i++) {
@@ -50,6 +50,7 @@ contract Voting {
      */
     function suggestTarget(address suggestedTarget) public {
         require(isVoter[msg.sender] == true, "Not a voter");
+        // 0x0 means the value has not been set - there is no 'null' in Solidity
         if (target == address(0x0)) {
             target = suggestedTarget;
         }

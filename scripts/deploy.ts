@@ -7,13 +7,14 @@ import hre from "hardhat";
 async function main() {
   const signers = await ethers.getSigners();
 
-  const voter1 = signers[0].address; // Address based on the deployer's private key
-  const voter2 = "0xd0F723c6b2226dF56Fe41E63b9eAA66Eb540BcB8"; // Alice's public address
-  const voter3 = "0x0d731cfabC5574329823F26d488416451d2ea376"; // Bob's public address
+  const voter1 = signers[0].address; // Anka's (deployer) public address
+  const voter2 = "0xd0F723c6b2226dF56Fe41E63b9eAA66Eb540BcB8"; // Alfred's public address
+  const voter3 = "0x0d731cfabC5574329823F26d488416451d2ea376"; // Aslan's public address
 
   let voters = [voter1, voter2, voter3];
 
   const VotingFactory = await ethers.getContractFactory("Voting");
+  // Deployes the contract using the wallet of signers[0], which is Anka's wallet
   const votingContract = await VotingFactory.connect(signers[0]).deploy(voters);
 
   await votingContract.deployed();
