@@ -159,9 +159,9 @@ The contract presented in this repository (file *contracts/Voting.sol*) is a sim
 The contract supports the following functionalities:
 - A static list of voter addresses is provided to the contract upon deployment
 - Voters can suggest a charity donation address
-- Anyone can send the blockchain's native asset to the contract to donate to the target charity
 - At some point the voters vote whether the gathered assets should be sent to the target charity or not
 - If enough voters agree, the assets can be distributed to the charity
+- Anyone can send the blockchain's native asset to the contract to donate to the target charity
 
 What is missing from this project:
 - Resetting the vote state after the charity donation has been distributed
@@ -242,4 +242,8 @@ To continue learning about Solidity, smart contract and the EVM, you can try the
 
 - A cool hands-on Solidity [tutorial](https://cryptozombies.io/). A bit outdated, but still works fine.
 - The Ethereum Foundation's [Learn hub](https://ethereum.org/en/learn/)
-- Consensys' [development recommendations](https://consensys.github.io/smart-contract-best-practices/development-recommendations) 
+- Consensys' [development recommendations](https://consensys.github.io/smart-contract-best-practices/development-recommendations)
+
+## Contact information
+
+TODO: hmm?

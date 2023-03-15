@@ -42,8 +42,8 @@ contract Voting {
     constructor(address[] memory voters) {
         for (uint256 i = 0; i < voters.length; i++) {
             isVoter[voters[i]] = true;
-            voterCount++;
         }
+        voterCount = voters.length;
     }
 
     /**
@@ -64,9 +64,11 @@ contract Voting {
      */
     function vote(bool userVote) public {
         require(isVoter[msg.sender] == true, "Not a voter");
-        require(!hasVoted[msg.sender], "Already voted");
+        require(hasVoted[msg.sender] == false, "Already voted");
         require(target != address(0x0), "No target suggested");
+
         hasVoted[msg.sender] = true;
+        
         if (userVote == true) {
             yesVotes++;
         } else {
@@ -80,7 +82,8 @@ contract Voting {
     function distribute() public {
         require(yesVotes + noVotes >= voterCount, "Not enough votes");
         if (yesVotes > noVotes) {
-            payable(target).transfer(address(this).balance);
+            uint256 contractBalance = address(this).balance;
+            payable(target).transfer(contractBalance);
         }
         // TODO: reset the contract state so a new vote can be initiated
     }
