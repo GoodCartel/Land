@@ -37,6 +37,7 @@ contract Voting {
 
     /**
      * @notice Instantiates the contract. Called automatically upon deployment
+     * @param voters The list of allowed voters
      */
     constructor(address[] memory voters) {
         for (uint256 i = 0; i < voters.length; i++) {
@@ -47,6 +48,7 @@ contract Voting {
 
     /**
      * @notice Any voter can suggest a new target for the charity assets. Works only if no target set yet.
+     * @param suggestedTarget The suggested target address for the charity
      */
     function suggestTarget(address suggestedTarget) public {
         require(isVoter[msg.sender] == true, "Not a voter");
@@ -58,6 +60,7 @@ contract Voting {
 
     /**
      * @notice Vote on a suggested charity target
+     * @param userVote Vote for ('true') or against ('false')
      */
     function vote(bool userVote) public {
         require(isVoter[msg.sender] == true, "Not a voter");
