@@ -13,12 +13,60 @@ Smart contracts are quite much like regular programs or applications except that
 They are not real legal contracts, but they have the power to force their programmed behaviour in a transparent manner. And that is their superpower: everyone can see what a contract does and knows that its behaviour is guaranteed forever.
 
 ### How smart contracts work
+
+Smart contracts are self-executing programs that run on a blockchain network. They are designed to automatically enforce the terms of an agreement between two parties, without requiring the intervention of a third party such as a lawyer or an escrow agent.
+
+Smart contracts work by using computer code to define the rules and conditions of an agreement. Once the code is deployed on the blockchain network, it becomes immutable and transparent, and all parties can verify that the contract will execute exactly as written.
+
+When two parties agree to use a smart contract, they typically define the terms of their agreement in natural language, such as the delivery of goods or the payment of funds. The smart contract developer then translates these terms into code, using a programming language that is compatible with the blockchain network.
+
+Once the code is deployed on the blockchain, it becomes a permanent record of the agreement, and it can be executed automatically when certain conditions are met. For example, a smart contract that governs the sale of a product might release the funds to the seller once the product has been delivered to the buyer and the buyer has confirmed receipt.
+
+Smart contracts are highly secure because they run on a decentralized network, and they are resistant to fraud or tampering. They are also highly efficient, because they can execute automatically without the need for intermediaries or manual intervention.
+
 ### Benefits of smart contracts
+
+The benefits of smart contracts include:
+
+1. Efficiency: Smart contracts automate the execution of agreements, reducing the need for intermediaries and manual processes, which saves time and money.
+
+2. Transparency: Smart contracts are transparent and immutable, providing a permanent record of the agreement that can be accessed and verified by all parties.
+
+3. Security: Smart contracts are highly secure because they run on a decentralized blockchain network, making them resistant to fraud or tampering.
+
+4. Trust: Smart contracts eliminate the need for intermediaries and increase trust between parties by ensuring that the terms of the agreement are executed exactly as written.
+
+5. Cost savings: Smart contracts reduce the costs associated with intermediaries and manual processes, making them a cost-effective alternative to traditional agreements.
+
+6. Accessibility: Smart contracts are accessible to anyone with an internet connection, making them a global solution for conducting business transactions. 
+
 ### Applications of smart contracts
+
+There are many use cases and applications of smart contracts across various industries. Here are some of the best examples:
+
+1. Supply Chain Management: Smart contracts can help automate and streamline supply chain processes by tracking and verifying the movement of goods, reducing the risk of fraud and errors.
+
+2. Real Estate: Smart contracts can be used to automate the process of buying, selling, and renting real estate, reducing the need for intermediaries and increasing efficiency and transparency.
+
+3. Finance and Banking: Smart contracts can automate financial transactions such as loans, insurance, and trading, reducing the need for intermediaries and improving efficiency, transparency, and security.
+
+4. Healthcare: Smart contracts can help automate and secure medical data sharing, improving patient privacy and data security.
+
+5. Intellectual Property: Smart contracts can be used to manage and protect intellectual property, such as patents and copyrights, by automating the licensing and payment process.
+
+6. Government: Smart contracts can be used in voting systems, identity verification, and other government processes to increase transparency, security, and efficiency.
+
+7. Gaming and Sports: Smart contracts can be used to create transparent and secure gaming and sports betting platforms, reducing the risk of fraud and ensuring fair play.
 
 ## 2. Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
 
 ### What is Solidity
+
+Solidity is the original programming language for developing smart contracts for the Ethereum ecosystem. It has been inspired by JavaScript, so its syntax should look somewhat familiar.
+
+Solidity is a high-level language and has lots of features familiar from other high-level languages. But since it is also a language for writing blockchain smart contracts, it has some unique extra features.
+
+Before a Solidity contract can be used in a real blockchain environment, it needs to be compiled into a bytecode version. 
 
 #### Why introduce Solidity
 
@@ -27,14 +75,6 @@ Nowadays there are many different languages for writing smart contracts. Solidit
 Because of its popularity, Solidity has good documentation and plenty of helpful articles around to help when stuck. Even [OpenAI](https://chat.openai.com/) understands and can help you with Solidity!
 
 Therefore, we feel that Solidity is the natural choice for an introductory language.
-
-#### What is Solidity
-
-Solidity is the original programming language for developing smart contracts for the Ethereum ecosystem. It has been inspired by JavaScript, so its syntax should look somewhat familiar.
-
-Solidity is a high-level language and has lots of features familiar from other high-level languages. But since it is also a language for writing blockchain smart contracts, it has some unique extra features.
-
-Before a Solidity contract can be used in a real blockchain environment, it needs to be compiled into a bytecode version. 
 
 #### Solidity development
 
@@ -152,7 +192,46 @@ Since contract code is usually open sourced, anyone can go through it to find se
 ## 3. Developing the contract - case Decentralized Comfort Center 
 
 ### Pulling it all together - Development flow
-### Deployment and UI 
+
+Just having a ready source code (or bytecode) doesn't give you much - you also need to deploy it somewhere. You can think of deployment as similar to releasing a version of your traditional application, except that all blockchain deployments are permanent and immutable.
+
+However, being permanent and immutable only refers to the blockchain in question. Nothing stops you from starting a new blockchain. And this is exactly what local development tools, including unit testing, do: they make it easy and fast to reset the blockchain state, essentially starting a new blockchain.
+
+So when developing contracts on your local machine, you can (and should) utilize local blockchains which are easy to reset. Development tooling mostly handles this automatically in the background, but if needed you can also run a local blockchain explicitly.
+
+Once you are ready to deploy your code to some real blockchain, which can't be reset, you should start by deploying to some test network blockchain. Each EVM blockchain, such as Ethereum, has one or more testnets which are meant for testing. You can get testnet Ethers for free, which you can then use for deployments and transactions. Testnets are good especially for collaborative testing: doing manual tests which require multiple parties, since multiple parties can't utilize your local blockchain.
+
+After testnet, the next logical step is deploying to mainnet.
+
+### Deploying the example contract
+
+To deploy the example contract to the Sepolia testnet, you should:
+
+1. Have an account (a wallet) with enough Ether for deployment
+  1. To create an account, you can use a browser wallet extension. [Metamask](https://metamask.io/) is one popular wallet extension. Once you have it installed, you can switch network to Sepolia and create a new account.
+  1. To get free Ether in the Sepolia testnet, you need a faucet. You can for example run this faucet for a while: https://sepolia-faucet.pk910.de/ . It takes a while to 'generate' Ether in order to deter spam attacks. Do note that this is not a real Proof of Work protocol.
+1. Create a new file called `.env` in the project root folder. You can just duplicate the file `.env.example` to have a ready template. The `.env` file is a store for secret information. All information is represented as key-value pairs. See the attached image for an example on how it looks.
+1. Export the created account's private key. Metamask offers this possibility through the account settings, instructions [here](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key). Add this private key to the `.env` file with the key `SEPOLIA_PRIVATE_KEY`. This private key is used to sign deployment transactions - so this account will be the one deploying contracts (and paying for the deployment).
+1. Go to https://etherscan.io and create an Etherscan account there. Create an API key, export it and add it to `.env` with key `ETHERSCAN_API_KEY`. This is used to verify contracts in the Etherscan blockchain explorer.
+1. Go to https://alchemy.com and create an Alchemy account. Create a new app in the Sepolia network. Export its full HTTPS url and add it to `.env` with key `SEPOLIA_PROVIDER_URL`. This is the blockchain connection provider you will use to connect to the blockchain.
+1. Your `.env` file should now look like the image after these instructions.
+1. Run command `npm run deploy` which executes a script `scripts/deploy.ts` for deployment and Etherscan verification.
+1. It takes a bit more than a minute to deploy and verify, but once that's done the script should give you an address for the contract.
+
+<img src="assets/env.png" alt="Contents of .env file"></img>Example of .env file contents
+
+### Using the contract: user interfaces and integrations
+
+Once a contract is deployed to some real blockchain (even testnet) there are two ways it can be utilized: through user interfaces or for other contracts to integrate with our contract.
+
+For other contracts to connect to your contract, they need to have your contract's address and knowledge of the functionalities it supports. Contract address you get during deployment. To connect one contract to another, special contract types called *interfaces* are used. An interface simply lists contract functionality.
+
+Typically, a contract has some sort of user interface built on top of it. This is often a website. The website utilizes [specialized libraries](https://docs.ethers.org) to interact with the blockchain through some *node provider* which provides access to the blockchain. The libraries makes it (relatively) easy for frontend developers to query contracts and to issue transactions to contracts.
+
+#### Etherscan user interface
+
+The Etherscan service generates a crude user interface for verified contracts. It's useful for performing some manual tests on a deployed contract and to read its state.
+
 
 ## 4. Resources and Learn more
 
@@ -226,46 +305,6 @@ This project uses the following components:
 
 ## Deployment
 
-### Deployment flow
-
-Just having a ready source code (or bytecode) doesn't give you much - you also need to deploy it somewhere. You can think of deployment as similar to releasing a version of your traditional application, except that all blockchain deployments are permanent and immutable.
-
-However, being permanent and immutable only refers to the blockchain in question. Nothing stops you from starting a new blockchain. And this is exactly what local development tools, including unit testing, do: they make it easy and fast to reset the blockchain state, essentially starting a new blockchain.
-
-So when developing contracts on your local machine, you can (and should) utilize local blockchains which are easy to reset. Development tooling mostly handles this automatically in the background, but if needed you can also run a local blockchain explicitly.
-
-Once you are ready to deploy your code to some real blockchain, which can't be reset, you should start by deploying to some test network blockchain. Each EVM blockchain, such as Ethereum, has one or more testnets which are meant for testing. You can get testnet Ethers for free, which you can then use for deployments and transactions. Testnets are good especially for collaborative testing: doing manual tests which require multiple parties, since multiple parties can't utilize your local blockchain.
-
-After testnet, the next logical step is deploying to mainnet.
-
-### Deploying the example contract
-
-To deploy the example contract to the Sepolia testnet, you should:
-
-1. Have an account (a wallet) with enough Ether for deployment
-  1. To create an account, you can use a browser wallet extension. [Metamask](https://metamask.io/) is one popular wallet extension. Once you have it installed, you can switch network to Sepolia and create a new account.
-  1. To get free Ether in the Sepolia testnet, you need a faucet. You can for example run this faucet for a while: https://sepolia-faucet.pk910.de/ . It takes a while to 'generate' Ether in order to deter spam attacks. Do note that this is not a real Proof of Work protocol.
-1. Create a new file called `.env` in the project root folder. You can just duplicate the file `.env.example` to have a ready template. The `.env` file is a store for secret information. All information is represented as key-value pairs. See the attached image for an example on how it looks.
-1. Export the created account's private key. Metamask offers this possibility through the account settings, instructions [here](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key). Add this private key to the `.env` file with the key `SEPOLIA_PRIVATE_KEY`. This private key is used to sign deployment transactions - so this account will be the one deploying contracts (and paying for the deployment).
-1. Go to https://etherscan.io and create an Etherscan account there. Create an API key, export it and add it to `.env` with key `ETHERSCAN_API_KEY`. This is used to verify contracts in the Etherscan blockchain explorer.
-1. Go to https://alchemy.com and create an Alchemy account. Create a new app in the Sepolia network. Export its full HTTPS url and add it to `.env` with key `SEPOLIA_PROVIDER_URL`. This is the blockchain connection provider you will use to connect to the blockchain.
-1. Your `.env` file should now look like the image after these instructions.
-1. Run command `npm run deploy` which executes a script `scripts/deploy.ts` for deployment and Etherscan verification.
-1. It takes a bit more than a minute to deploy and verify, but once that's done the script should give you an address for the contract.
-
-<img src="assets/env.png" alt="Contents of .env file"></img>Example of .env file contents
-
-### Using the contract: user interfaces and integrations
-
-Once a contract is deployed to some real blockchain (even testnet) there are two ways it can be utilized: through user interfaces or for other contracts to integrate with our contract.
-
-For other contracts to connect to your contract, they need to have your contract's address and knowledge of the functionalities it supports. Contract address you get during deployment. To connect one contract to another, special contract types called *interfaces* are used. An interface simply lists contract functionality.
-
-Typically, a contract has some sort of user interface built on top of it. This is often a website. The website utilizes [specialized libraries](https://docs.ethers.org) to interact with the blockchain through some *node provider* which provides access to the blockchain. The libraries makes it (relatively) easy for frontend developers to query contracts and to issue transactions to contracts.
-
-#### Etherscan user interface
-
-The Etherscan service generates a crude user interface for verified contracts. It's useful for performing some manual tests on a deployed contract and to read its state.
 
 ## Learn more
 
