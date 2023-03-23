@@ -235,10 +235,8 @@ The Etherscan service generates a crude user interface for verified contracts. I
 
 ## 4. Resources and Learn more
 
-__________________________________________________________________
 
-
-#### Example project files and folder structure
+### Example project files and folder structure
 
 Let's use this project to explain what different folders are used for and what the files are. Let's go through the folders and files alphabetically:
 - Folder *.vscode*: contains settings used in Visual Studio Code. For example extension recommendations. This is created by the developer.
@@ -260,9 +258,7 @@ Let's use this project to explain what different folders are used for and what t
 - File *tsconfig.json*: contains configuration for TypeScript. This is created by the developer.
 
 
-
-
-## Example contract functionality
+### Example contract functionality
 
 The contract presented in this repository (file *contracts/Voting.sol*) is a simple voting contract to distribute native assets sent to the contract. This is only created for learning purposes and is not meant to be used in real use.
 
@@ -302,8 +298,6 @@ This project uses the following components:
 1. Run `npm install`
 1. To run unit tests, run `npx hardhat test`
 1. For deployment, see below for details
-
-## Deployment
 
 
 ## Learn more
