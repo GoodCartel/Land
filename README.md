@@ -4,6 +4,30 @@ This project is a training project to learn the basics of developing smart contr
 
 This documentation is meant to introduce various parts of the Ethereum ecosystem and its most common coding language, Solidity. You do not need to understand everything written here to be able to write smart contracts.
 
+## 1. Smart Contract Basics
+
+### What is a smart contract
+### How smart contracts work
+### Benefits of smart contracts
+### Applications of smart contracts
+
+## 2. Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
+
+### What is Solidity
+### What is Ethereum and the Ethereum Virtual Machine (EVM)
+### Tokens, transactions and costs "usage"
+### Security and audits
+
+## 3. Developing the contract - case Decentralized Comfort Center 
+
+### Pulling it all together - Development flow
+### Deployment and UI 
+
+## 4. Resources and Learn more
+
+__________________________________________________________________
+
+
 ## What is Ethereum
 
 Ethereum is a blockchain launched in 2015. It uses similar blockchain principles as Bitcoin, but also introduces fully programmable smart contracts.
