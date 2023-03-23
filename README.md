@@ -14,13 +14,15 @@ They are not real legal contracts, but they have the power to force their progra
 
 ### How smart contracts work
 
-Smart contracts are self-executing programs that run on a blockchain network. They are designed to automatically enforce the terms of an agreement between two parties, without requiring the intervention of a third party such as a lawyer or an escrow agent.
+Smart contracts are programs that run on a blockchain network. They are designed to enforce the terms of an agreement between two parties, without requiring the intervention of a trusted third party such as a lawyer or an escrow agent.
 
 Smart contracts work by using computer code to define the rules and conditions of an agreement. Once the code is deployed on the blockchain network, it becomes immutable and transparent, and all parties can verify that the contract will execute exactly as written.
 
-When two parties agree to use a smart contract, they typically define the terms of their agreement in natural language, such as the delivery of goods or the payment of funds. The smart contract developer then translates these terms into code, using a programming language that is compatible with the blockchain network.
+One might think that smart contracts are perfect for enforcing an agreement between two parties. So the parties would define the terms of their agreement in natural language, such as the delivery of goods or the payment of funds. The smart contract developer would then translate these terms into code, using a programming language that is compatible with the blockchain network.
 
-Once the code is deployed on the blockchain, it becomes a permanent record of the agreement, and it can be executed automatically when certain conditions are met. For example, a smart contract that governs the sale of a product might release the funds to the seller once the product has been delivered to the buyer and the buyer has confirmed receipt.
+In reality, smart contracts are written for a much wider audience. If two parties have the need to perform a trustless exchange of some assets, a smart contract is written which enables the exchange of any assets between any parties - not just for the two specific parties or assets. So smart contracts are typically generic contracts which can be utilized by any parties.
+
+Once the code is deployed on the blockchain, it becomes a permanent record of the agreement, and it can be executed when certain conditions are met. For example, a smart contract that governs the sale of a product might release the funds to the seller once the product has been delivered to the buyer and the buyer has confirmed receipt.
 
 Smart contracts are highly secure because they run on a decentralized network, and they are resistant to fraud or tampering. They are also highly efficient, because they can execute automatically without the need for intermediaries or manual intervention.
 
@@ -28,7 +30,7 @@ Smart contracts are highly secure because they run on a decentralized network, a
 
 The benefits of smart contracts include:
 
-**1. Efficiency:** Smart contracts automate the execution of agreements, reducing the need for intermediaries and manual processes, which saves time and money.
+**1. Efficiency:** Smart contracts help with the execution of agreements, reducing the need for intermediaries and manual processes, which saves time and money.
 
 **2. Transparency:** Smart contracts are transparent and immutable, providing a permanent record of the agreement that can be accessed and verified by all parties.
 
@@ -57,6 +59,8 @@ There are many use cases and applications of smart contracts across various indu
 **6. Government:** Smart contracts can be used in voting systems, identity verification, and other government processes to increase transparency, security, and efficiency.
 
 **7. Gaming and Sports:** Smart contracts can be used to create transparent and secure gaming and sports betting platforms, reducing the risk of fraud and ensuring fair play.
+
+**8. Digital collectibles:** Smart contracts can form digital ledgers which hold digital collectibles, such as NFTs.
 
 ## 2. Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
 
