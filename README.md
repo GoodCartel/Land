@@ -24,7 +24,7 @@ In reality, smart contracts are written for a much wider audience. If two partie
 
 Once the code is deployed on the blockchain, it becomes a permanent record of the agreement, and it can be executed when certain conditions are met. For example, a smart contract that governs the sale of a product might release the funds to the seller once the product has been delivered to the buyer and the buyer has confirmed receipt.
 
-Smart contracts are highly secure because they run on a decentralized network, and they are resistant to fraud or tampering. They are also highly efficient, because they can execute automatically without the need for intermediaries or manual intervention.
+Smart contracts are highly secure because they run on a decentralized network, and they are resistant to fraud or tampering.
 
 ### Benefits of smart contracts
 
