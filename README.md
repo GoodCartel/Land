@@ -14,13 +14,15 @@ They are not real legal contracts, but they have the power to force their progra
 
 ### How smart contracts work
 
-Smart contracts are self-executing programs that run on a blockchain network. They are designed to automatically enforce the terms of an agreement between two parties, without requiring the intervention of a third party such as a lawyer or an escrow agent.
+Smart contracts are programs that run on a blockchain network. They are designed to enforce the terms of an agreement between two parties, without requiring the intervention of a trusted third party such as a lawyer or an escrow agent.
 
 Smart contracts work by using computer code to define the rules and conditions of an agreement. Once the code is deployed on the blockchain network, it becomes immutable and transparent, and all parties can verify that the contract will execute exactly as written.
 
-When two parties agree to use a smart contract, they typically define the terms of their agreement in natural language, such as the delivery of goods or the payment of funds. The smart contract developer then translates these terms into code, using a programming language that is compatible with the blockchain network.
+One might think that smart contracts are perfect for enforcing an agreement between two parties. So the parties would define the terms of their agreement in natural language, such as the delivery of goods or the payment of funds. The smart contract developer would then translate these terms into code, using a programming language that is compatible with the blockchain network.
 
-Once the code is deployed on the blockchain, it becomes a permanent record of the agreement, and it can be executed automatically when certain conditions are met. For example, a smart contract that governs the sale of a product might release the funds to the seller once the product has been delivered to the buyer and the buyer has confirmed receipt.
+In reality, smart contracts are written for a much wider audience. If two parties have the need to perform a trustless exchange of some assets, a smart contract is written which enables the exchange of any assets between any parties - not just for the two specific parties or assets. So smart contracts are typically generic contracts which can be utilized by any parties.
+
+Once the code is deployed on the blockchain, it becomes a permanent record of the agreement, and it can be executed when certain conditions are met. For example, a smart contract that governs the sale of a product might release the funds to the seller once the product has been delivered to the buyer and the buyer has confirmed receipt.
 
 Smart contracts are highly secure because they run on a decentralized network, and they are resistant to fraud or tampering. They are also highly efficient, because they can execute automatically without the need for intermediaries or manual intervention.
 
@@ -28,7 +30,7 @@ Smart contracts are highly secure because they run on a decentralized network, a
 
 The benefits of smart contracts include:
 
-**1. Efficiency:** Smart contracts automate the execution of agreements, reducing the need for intermediaries and manual processes, which saves time and money.
+**1. Efficiency:** Smart contracts help with the execution of agreements, reducing the need for intermediaries and manual processes, which saves time and money.
 
 **2. Transparency:** Smart contracts are transparent and immutable, providing a permanent record of the agreement that can be accessed and verified by all parties.
 
@@ -58,11 +60,13 @@ There are many use cases and applications of smart contracts across various indu
 
 **7. Gaming and Sports:** Smart contracts can be used to create transparent and secure gaming and sports betting platforms, reducing the risk of fraud and ensuring fair play.
 
+**8. Digital collectibles:** Smart contracts can form digital ledgers which hold digital collectibles, such as NFTs.
+
 ## 2. Introduction to Solidity and the Ethereum Virtual Machine (EVM) environment
 
 ### What is Solidity
 
-Solidity is the original programming language for developing smart contracts for the Ethereum ecosystem. It has been inspired by JavaScript, so its syntax should look somewhat familiar.
+Solidity is the original programming language for developing smart contracts for the Ethereum ecosystem. It has been inspired by JavaScript, so its syntax should look somewhat familiar for developers.
 
 Solidity is a high-level language and has lots of features familiar from other high-level languages. But since it is also a language for writing blockchain smart contracts, it has some unique extra features.
 
@@ -106,11 +110,11 @@ The Ethereum Virtual Machine is an abstract computer which manages all the logic
 
 The EVM is built by thousands of individual computers which participate in upholding the EVM's rules. Each one of these computers runs a *node client*, a program which knows the rules of the network and communicates with other node clients to propagate information, and to agree on the current blockchain's state.
 
-### Tokens, transactions and costs "usage"
+### Tokens, transactions and costs
 
 #### Addresses
 
-All interactions inside the blockchain happen between blockchain addresses. An address is a 40 character hexadecimal string (such as *0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D*).
+All interactions inside the Ethereum blockchain happen between blockchain addresses. An address is a 40 character hexadecimal string (such as *0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D*).
 
 There are two types of addresses:
 1. A user address. Also called an Externally Owned Address or EOA.
@@ -155,7 +159,6 @@ Therefore, tokens are regular smart contracts which follow certain token standar
 Another famous token standard is the [ERC-721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) standard - more commonly known by its name Non-Fungible Token, or NFT.
 
 Many tokens have real world value. Therefore, they can be traded in various marketplaces and can be used to pay for various services.
-
 
 ### Pitfalls, Security and audits
 
@@ -203,6 +206,68 @@ Once you are ready to deploy your code to some real blockchain, which can't be r
 
 After testnet, the next logical step is deploying to mainnet.
 
+### Example project files and folder structure
+
+Let's use this project to explain what different folders are used for and what the files are. Let's go through the folders and files alphabetically:
+- Folder *.vscode*: contains settings used in Visual Studio Code. For example extension recommendations. This is created by the developer.
+- Folder *artifacts*: contains compiled Solidity bytecodes for all the used contracts. This is generated by Hardhat.
+- Folder *assets*: contains images used in documentation. This is created by the developer.
+- Folder *cache*: internal cache used by Hardhat. This is generated by Hardhat.
+- Folder *contracts*: contains source code for all the used contracts. This is the default folder name used by Hardhat, but can be configured. this is created by the developer.
+- Folder *node_modules*: contains all the used packages as listed in file *package.json*. This is generated by the package manager, NPM.
+- Folder *scripts*: contains various scripts. Currently contains only the deployment script. This is created by the developer.
+- Folder *test*: contains all the unit tests. This is the default folder name used by Hardhat (for its unit test tooling), but can be configured. This is created by the developer.
+- Folder *typechain-types*: contains TypeScript definitions for all the used contracts. These can be used by your TypeScript code (unit tests and scripts mostly). This is generated by Hardhat.
+- File *.env*: contains all the secret information required by the project, such as the deployer's private key. This is created by the developer.
+- File *.env.example*: contains a template for to be used as the *.env* file. This is created by the developer.
+- File *.gitignore*: contains list of files/folders which are not added to version control. This is created by the developer.
+- File *hardhat.config.ts*: contains settings for Hardhat. This is created by the developer.
+- File *package-lock.json*: contains information about used packages. This is generated by the package manager, NPM.
+- File *package.json*: contains information about the project and the packages it requires. This is created by the developer.
+- File *README.md*: contains all the documentation. This is created by the developer.
+- File *tsconfig.json*: contains configuration for TypeScript. This is created by the developer.
+
+### Example contract functionality
+
+The contract presented in this repository (file *contracts/Voting.sol*) is a simple voting contract to distribute native assets sent to the contract. This is only created for learning purposes and is not meant to be used in real use.
+
+The contract supports the following functionalities:
+- A static list of voter addresses is provided to the contract upon deployment
+- Voters can suggest a charity donation address
+- At some point the voters vote whether the gathered assets should be sent to the target charity or not
+- If enough voters agree, the assets can be distributed to the charity
+- Anyone can send the blockchain's native asset to the contract to donate to the target charity
+
+What is missing from this project:
+- Resetting the vote state after the charity donation has been distributed
+- Various supporting functionality, such a changing vote, withdrawing vote, abstain votes, ...
+
+### Unit tests
+
+Unit tests are small pieces of code which make sure certain specific functionality works in the smart contract. They help in making sure the contract works as intended, but also to help retain the desired functionality when changes are made to the contract.
+
+The project contains decent unit tests. The tests are written with Chai/Mocha JS test frameworks, with some Solidity-specific extensions.
+
+### Used libraries and technologies
+
+This project uses the following components:
+- [Solidity](https://soliditylang.org/) language
+- JavaScript, TypeScript
+- [Hardhat](https://hardhat.org/) development environment
+- Hardhat toolbox plugin, which includes the following notable packages:
+  - [ethers.js](https://docs.ethers.org/v5/) Ethereum blockchain interaction library
+  - [Mocka](https://mochajs.org/) and [Chai](https://chaijs.com/) JavaScript testing libraries
+  - [Typechain](https://github.com/dethcrypto/TypeChain/) for creating TypeScript bindings for Solidity contracts
+
+### Installation
+
+1. Get the project's files from [GitHub](https://github.com/GoodCartel/SolidityTraining). Download as ZIP if you're not sure how to clone the repository itself
+1. If not installed, [install node](https://nodejs.org/en/download)
+1. Open a terminal in the project's root folder
+1. Run `npm install`
+1. To run unit tests, run `npx hardhat test`
+1. For deployment, see below for details
+
 ### Deploying the example contract
 
 To deploy the example contract to the Sepolia testnet, you should:
@@ -233,74 +298,7 @@ Typically, a contract has some sort of user interface built on top of it. This i
 The Etherscan service generates a crude user interface for verified contracts. It's useful for performing some manual tests on a deployed contract and to read its state.
 
 
-## 4. Resources and Learn more
-
-
-### Example project files and folder structure
-
-Let's use this project to explain what different folders are used for and what the files are. Let's go through the folders and files alphabetically:
-- Folder *.vscode*: contains settings used in Visual Studio Code. For example extension recommendations. This is created by the developer.
-- Folder *artifacts*: contains compiled Solidity bytecodes for all the used contracts. This is generated by Hardhat.
-- Folder *assets*: contains images used in documentation. This is created by the developer.
-- Folder *cache*: internal cache used by Hardhat. This is generated by Hardhat.
-- Folder *contracts*: contains source code for all the used contracts. This is the default folder name used by Hardhat, but can be configured. this is created by the developer.
-- Folder *node_modules*: contains all the used packages as listed in file *package.json*. This is generated by the package manager, NPM.
-- Folder *scripts*: contains various scripts. Currently contains only the deployment script. This is created by the developer.
-- Folder *test*: contains all the unit tests. This is the default folder name used by Hardhat (for its unit test tooling), but can be configured. This is created by the developer.
-- Folder *typechain-types*: contains TypeScript definitions for all the used contracts. These can be used by your TypeScript code (unit tests and scripts mostly). This is generated by Hardhat.
-- File *.env*: contains all the secret information required by the project, such as the deployer's private key. This is created by the developer.
-- File *.env.example*: contains a template for to be used as the *.env* file. This is created by the developer.
-- File *.gitignore*: contains list of files/folders which are not added to version control. This is created by the developer.
-- File *hardhat.config.ts*: contains settings for Hardhat. This is created by the developer.
-- File *package-lock.json*: contains information about used packages. This is generated by the package manager, NPM.
-- File *package.json*: contains information about the project and the packages it requires. This is created by the developer.
-- File *README.md*: contains all the documentation. This is created by the developer.
-- File *tsconfig.json*: contains configuration for TypeScript. This is created by the developer.
-
-
-### Example contract functionality
-
-The contract presented in this repository (file *contracts/Voting.sol*) is a simple voting contract to distribute native assets sent to the contract. This is only created for learning purposes and is not meant to be used in real use.
-
-The contract supports the following functionalities:
-- A static list of voter addresses is provided to the contract upon deployment
-- Voters can suggest a charity donation address
-- At some point the voters vote whether the gathered assets should be sent to the target charity or not
-- If enough voters agree, the assets can be distributed to the charity
-- Anyone can send the blockchain's native asset to the contract to donate to the target charity
-
-What is missing from this project:
-- Resetting the vote state after the charity donation has been distributed
-- Various supporting functionality, such a changing vote, withdrawing vote, abstain votes, ...
-
-### Unit tests
-
-Unit tests are small pieces of code which make sure certain specific functionality works in the smart contract. They help in making sure the contract works as intended, but also to help retain the desired functionality when changes are made to the contract.
-
-The project contains comprehensive unit tests. The tests are written with Chai/Mocha JS test frameworks, with some Solidity-specific extensions.
-
-### Used libraries and technologies
-
-This project uses the following components:
-- [Solidity](https://soliditylang.org/) language
-- JavaScript, TypeScript
-- [Hardhat](https://hardhat.org/) development environment
-- Hardhat toolbox plugin, which includes the following notable packages:
-  - [ethers.js](https://docs.ethers.org/v5/) Ethereum blockchain interaction library
-  - [Mocka](https://mochajs.org/) and [Chai](https://chaijs.com/) JavaScript testing libraries
-  - [Typechain](https://github.com/dethcrypto/TypeChain/) for creating TypeScript bindings for Solidity contracts
-
-### Installation
-
-1. Get the project's files from [GitHub](https://github.com/GoodCartel/SolidityTraining). Download as ZIP if you're not sure how to clone the repository itself
-1. If not installed, [install node](https://nodejs.org/en/download)
-1. Open a terminal in the project's root folder
-1. Run `npm install`
-1. To run unit tests, run `npx hardhat test`
-1. For deployment, see below for details
-
-
-## Learn more
+## 4. Learn more
 
 To continue learning about Solidity, smart contract and the EVM, you can try the following resources:
 
