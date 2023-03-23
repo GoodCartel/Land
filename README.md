@@ -256,7 +256,7 @@ This project uses the following components:
 - [Hardhat](https://hardhat.org/) development environment
 - Hardhat toolbox plugin, which includes the following notable packages:
   - [ethers.js](https://docs.ethers.org/v5/) Ethereum blockchain interaction library
-  - [Mocka](https://mochajs.org/) and [Chai](https://chaijs.com/) JavaScript testing libraries
+  - [Mocha](https://mochajs.org/) and [Chai](https://chaijs.com/) JavaScript testing libraries
   - [Typechain](https://github.com/dethcrypto/TypeChain/) for creating TypeScript bindings for Solidity contracts
 
 ### Installation
@@ -274,7 +274,7 @@ To deploy the example contract to the Sepolia testnet, you should:
 
 1. Have an account (a wallet) with enough Ether for deployment
   1. To create an account, you can use a browser wallet extension. [Metamask](https://metamask.io/) is one popular wallet extension. Once you have it installed, you can switch network to Sepolia and create a new account.
-  1. To get free Ether in the Sepolia testnet, you need a faucet. You can for example run this faucet for a while: https://sepolia-faucet.pk910.de/ . It takes a while to 'generate' Ether in order to deter spam attacks. Do note that this is not a real Proof of Work protocol.
+  1. To get free Ether in the Sepolia testnet, you need a faucet. You can for example run this faucet for a while: https://sepolia-faucet.pk910.de/ . It takes a while to 'generate' Ether in order to deter spam attacks. You won't need more than 0.1 Eth. Do note that this is not a real Proof of Work protocol.
 1. Create a new file called `.env` in the project root folder. You can just duplicate the file `.env.example` to have a ready template. The `.env` file is a store for secret information. All information is represented as key-value pairs. See the attached image for an example on how it looks.
 1. Export the created account's private key. Metamask offers this possibility through the account settings, instructions [here](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key). Add this private key to the `.env` file with the key `SEPOLIA_PRIVATE_KEY`. This private key is used to sign deployment transactions - so this account will be the one deploying contracts (and paying for the deployment).
 1. Go to https://etherscan.io and create an Etherscan account there. Create an API key, export it and add it to `.env` with key `ETHERSCAN_API_KEY`. This is used to verify contracts in the Etherscan blockchain explorer.
@@ -283,7 +283,9 @@ To deploy the example contract to the Sepolia testnet, you should:
 1. Run command `npm run deploy` which executes a script `scripts/deploy.ts` for deployment and Etherscan verification.
 1. It takes a bit more than a minute to deploy and verify, but once that's done the script should give you an address for the contract.
 
-<img src="assets/env.png" alt="Contents of .env file"></img>Example of .env file contents
+<img src="assets/env.png" alt="Contents of .env file"></img>
+
+<i>Example of .env file contents</i>
 
 ### Using the contract: user interfaces and integrations
 
