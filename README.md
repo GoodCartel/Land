@@ -30,4 +30,6 @@ To continue learning about Solidity, smart contract and the EVM, you can try the
 
 This documentation is part of a free Smart Contracts learning course by [Good Cartel](https://www.goodcartel.xyz) and [Equilibrium](https://equilibrium.co). You can find the course at the Good Cartel website.
 
+For further questions, feel free to join the [Good Cartel Discord](https://discord.gg/PQvDBWxNG3).
+
 <img src="assets/course.jpg" alt="Good Cartel course" width="500px"></img>
