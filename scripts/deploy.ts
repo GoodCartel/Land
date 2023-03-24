@@ -1,4 +1,4 @@
-import { ethers } from "hardhat";
+import { ethers, network } from "hardhat";
 import hre from "hardhat";
 
 // This script deployes the contract to a blockchain and verifies it in Etherscan servic
@@ -20,8 +20,6 @@ async function main() {
   await votingContract.deployed();
 
   console.log("Deployments done, waiting for etherscan verifications");
-  // Wait for the contract to be propagated inside Etherscan
-  await new Promise((f) => setTimeout(f, 60000));
 
   // Verifies a contract in Etherscan service
   const verify = async (addr: string, args: any[]) => {
@@ -39,8 +37,11 @@ async function main() {
     }
   };
 
-  await verify(votingContract.address, [voters]);
-
+  if (network.name !== "localhost") {
+    // Wait for the contract to be propagated inside Etherscan
+    await new Promise((f) => setTimeout(f, 60000));
+    await verify(votingContract.address, [voters]);
+  }
   console.log(
     `Contract deployed and verified at https://sepolia.etherscan.io/address/${votingContract.address}`
   );

@@ -64,6 +64,16 @@ Any interaction which changes state in the blockchain is called a transaction. A
 
 It is possible to read data from the blockchain without a transaction. This kind of interaction only reads the data from the node you are connecting to, since all nodes contain the blockchain's current state. This kind of read-only interactions can't, obviously, change the state of the blockchain in any way.
 
+### Networks
+
+There are generally three kinds of (EVM) blockchain networks:
+
+1. Public mainnet networks where assets have real value. Such as Ethereum or Polygon
+1. Public testnet networks where assets don't have any real value. Such as Ethereum Sepolia or Polygon Mumbai
+1. Local private networks where assets don't have any real value. Every developer deployes their own in their own computers. Used for local testing. The networks are very short-lived and don't have any names.
+
+Mainnet is the production environment. Testnets are handy for distributing your contracts to be tested by other team members. Local networks are for short-lived, personal testing.
+
 ### Ethereum assets
 
 There are two types of assets in Ethereum. The main asset is the blockchain's native asset, called *Ether*. The other type is various user created assets, called tokens.
