@@ -6,7 +6,7 @@ import "@nomiclabs/hardhat-etherscan";
 dotenv.config();
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.17",
+  solidity: "0.8.9",
   networks: {
     sepolia: {
       url: process.env.SEPOLIA_PROVIDER_URL,
