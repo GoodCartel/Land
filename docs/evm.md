@@ -114,6 +114,14 @@ The difficult part is understanding the environment in which the language is use
 
 Another common pitfall is the contract's gas usage. Nobody wants to pay too much for their transactions. In the worst case, the contract becomes bricked if it tries to use more gas than any blockchain block has space for.
 
+### Wallet security
+
+Your wallet is formed from your private key. The private key is sometimes further derived from mnemonic key words. If anyone finds out your private key or the used mnemonic, they gain direct access to everything you have in your wallet.
+
+It it therefore imperative that you **never share your private key or mnemonic** anywhere.
+
+However, if you do need to input your private key somewhere (for example to deploy contracts as shown in this example project), make sure the private key is for an account which has access to a minimum amount of assets (unless the assets are testnet assets, where it doesn't matter too much). So remember to compartmentalize your wallets - never input the private key anywhere for wallets which have a meaningful amount of real assets.
+
 ### Contract security
 
 All programs have bugs. Smart contracts are no exception.
